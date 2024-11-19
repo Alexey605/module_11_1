@@ -1,0 +1,36 @@
+import requests as rq
+import numpy as np
+import pandas as pd
+
+# requests
+rq1 = rq.get('https://api.github.com/events')
+payload = {'key1': 'value1', 'key2': 'value2'}
+rq2 = rq.get('https://httpbin.org/get', params=payload)
+print(rq1.url) # вывод URL
+print(rq2.url) # вывод URL с определенными параметрами
+
+# numpy
+a = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9]])
+print(a) # вывод массива
+print(a.ndim) # размерность - количество осей
+print(a.shape) # длина массива по каждой оси
+print(a.size) # количество элементов в массиве
+
+# pandas
+data = {
+    'Товар': ['Хлеб', 'Мука', 'Молоко'],
+    'Цена': [25, 30, 35],
+    'Количество': [2, 5, 3]
+}
+df = pd.DataFrame(data) # cоздание DataFrame из словаря
+print(df, '\n')
+print(df['Цена'], '\n') # выборка столбца
+print(df.iloc[2], '\n') # выборка строки по индексу
+print(df.loc[1], '\n') # выборка строки по метке
+new_row = {'Товар': 'Творог', 'Цена': 40, 'Количество': 4} # новая строка
+df = df._append(new_row, ignore_index=True) # добавление строки
+print(df, '\n')
+filt_df = df[df['Цена'] >= 35] # фильтрация строк
+print(filt_df, '\n')
